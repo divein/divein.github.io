@@ -16,13 +16,20 @@
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
-
+    &:hover {
+       text-decoration: none;
+    }
     &,
     &:visited {
         color: $grey-color-dark;
     }
 }
-
+.site-title-desc {
+    line-height:60px;
+    float:left;
+    margin-left:15px;
+    color: #ddd;
+}
 .site-nav {
     float: right;
     line-height: 56px;

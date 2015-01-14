@@ -202,3 +202,53 @@ pre {
         }
     }
 }
+
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/**
+ * Nav Bar
+ */
+.bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav>li>a {
+   font-weight: 500;
+   color: #563d7c;
+}
+.bs-docs-nav .navbar-nav>li>a:hover, .bs-docs-nav .navbar-nav>.active>a, .bs-docs-nav .navbar-nav>.active>a:hover {
+   color: #463265;
+   background-color: #f9f9f9;
+}
+
+.bs-docs-nav {
+   margin-bottom: 0;
+   background-color: #fff;
+   border-bottom: 0;
+}
+
+.bs-docs-masthead, .bs-docs-header {
+    position: relative;
+    padding: 1px 15px;
+    color: #cdbfe3;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: #7ba1b7;
+}
+
+.home-background {
+    background: url("/images/home_background.jpg") no-repeat 0 0; 
+}
+
+.text-block {
+    color: #2c2c2c;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.625em;
+    text-align: inherit;
+    margin: 0 0 1.5em 0;
+}
+
+.home-first-grid {
+    min-height: 60px;   
+}

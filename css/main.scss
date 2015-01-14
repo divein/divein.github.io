@@ -3,11 +3,12 @@
 ---
 @charset "utf-8";
 
-
-
-// Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
+///变量定义
+// 默认字体
+$base-font-family: courier new,courier,monospace;
+// 默认字体大小
+$base-font-size:   12px;
+// 小字体大小
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
@@ -21,7 +22,7 @@ $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-// Width of the content area
+// 基本内容区宽度
 $content-width:    800px;
 
 $on-palm:          600px;
@@ -46,7 +47,7 @@ $on-laptop:        800px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-        "base",
-        "layout",
-        "syntax-highlighting"
+   "base",
+   "layout",
+   "syntax-highlighting"
 ;
