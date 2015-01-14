@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "Laravel_Query_Builder一些用法汇总"
+date:   2015-01-08 01:02:27
+categories: jekyll update
+---
+
+### 基本用法（来自手册)
+ 
+#### Select 查询相关
+ 
+{% highlight php %}
+$users = DB::table('users')->get();
+ 
+foreach($users as $user)
+{
+   var_dump($user->name);
+}
+{% endhighlight %}
+ 
+##### 单个条件的 where
+ 
+{% highlight php %}
+$user = DB::table('users')->where('name', 'John')->first();
+ 
+var_dump($user->name);
+{% endhighlight %}
+ 
+> 相当于 select * from `users` where `name` = 'John' limit 1;
+ 
+##### 使用 where 及运算符
+ 
+where 函数原型:
+{% highlight php %}
+where(string $column, string $operator = null, mixed $value = null, string $boolean = 'and')
+{% endhighlight %}
+ 
+##### 当 where 为 2个参数的时候， 字段与值之间是 = 关系。
+如果多于2个， 则第二个参数为 比较符号 ：
+ 
+{% highlight php %}
+$user = DB::table('users')->where('votes', '>', 100)->get();
+ 
+// 相当于 select * from `users` where `votes` > 100;
+{% endhighlight %}
+ 
+比较操作符支持的有:
+ 
+> '=', '<', '>', '<=', '>=', '<>', '!=','like', 'not like', 'between', 'ilike', '&', '|', '^', '<<', '>>',
+ 
+##### 当$value 为null 或者没有指定值得时候:
+ 
+{% highlight php %}
+$user = DB::table('users')->where('vote', null)->get();
+ 
+{% endhighlight %}
+> 相当于 select * from `users` where `vote` is null
+ 
+##### 层叠 where 查询
+ 
+多个where 条件默认是以 and 相连:
+ 
+{% highlight php %}
+$users = DB::table('users')->where('votes', '>', 100)
+                           ->where('name', 'John')
+                           ->get();
+{% endhighlight %}
+> 相当于 select * from  `users` where `votes` > 100 and `name` = 'John'
+ 
+默认使用 and 连接， 也可以使用 orWhere来使用 or 连接:
+{% highlight php %}
+$users = DB::table('users')->where('votes', '>', 100)
+                           ->orWhere('name', 'John')
+                           ->get();
+ 
+// 当然 orWhere 也可以使用 where 的第四个参数代替
+// 上面语句等于:
+$users = DB::table('users')->where('votes', '>', 100)
+                            ->where('name', '=', 'John', 'or')
+                            ->get();
+{% endhighlight %}
+> 相当于: select * from `users` where `votes` > 100 or `name` = 'John';
+ 
+##### where 条件中的Between
+ 
+使用 whereBetween 来生成where 中的between:
+ 
+{% highlight php %}
+$users = DB::table('users')
+                  ->whereBetween('votes', array(1, 100))->get();
+{% endhighlight %}
+> 生成 select * from users where votes between 1 and 100;
+ 
+当然 whereBetween 也有一些变化方法，提供 not between , or between 等:
+ 
+{% highlight php %}
+// where `vote` not between 1 and 100
+$users = DB::table('users')
+                  ->whereNotBetween('votes', array(1, 100))->get();
+ 
+// 使用 or 层叠
+// where `name` = 'John' or `votes` between 1 and 100;
+$users = DB::table('users')->
+                  ->where('name', 'John')
+                  ->orWhereBetween('votes', array(1, 100))->get();
+ 
+// 还有个 `orWhereNotBetween`  这里就不多说了。
+{% endhighlight %}
+ 
+##### 使用where in 和数组
+ 
+ 
+ 
+ 
